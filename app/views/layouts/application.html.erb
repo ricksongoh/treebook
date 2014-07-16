@@ -8,7 +8,22 @@
 </head>
 <body>
 
-<%= yield %>
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+	  	<div class="container">
+		    <a class="brand" href="#">Treebook</a>
+		    <ul class="nav">
+		      <li class="active"><%= link_to "Home", statuses_path %></li>
+		      <li><%= link_to "New Status", new_status_path %></li>
+		      <li><a href="#">Link</a></li>
+		    </ul>
+		</div>
+	  </div>
+	</div>
+
+	<div class="container">
+		<%= yield %>
+	</div>
 
 </body>
 </html>
