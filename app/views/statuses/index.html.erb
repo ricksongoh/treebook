@@ -12,7 +12,7 @@
 			</div>
 
 			<div class="span7">
-				<strong><p><%= status.user.full_name %></p></strong>
+				<strong><p><%= link_to status.user.full_name, status.user.profile_name %></p></strong>
 				<p><%= status.content %></p>
 				<div class="meta">
 					<%= link_to time_ago_in_words(status.created_at) + " ago", status %>

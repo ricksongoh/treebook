@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class StatusesControllerTest < ActionController::TestCase
+  
   setup do
     @status = statuses(:one)
   end
@@ -36,7 +37,18 @@ class StatusesControllerTest < ActionController::TestCase
       post :create, status: { content: @status.content }
     end
 
+  end
+
+  test "should create status for current user when logged in" do
+    sign_in users(:rickson)
+
+    assert_difference('Status.count') do
+      post :create, status: { content: @status.content, user_id: users(:minigoh).id }
+    end
+
     assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:rickson).id
+
   end
 
   test "should be logged in to show status" do
@@ -69,10 +81,24 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should update status" do
+  test "should update status when logged in" do
     sign_in users(:rickson)
     put :update, id: @status, status: { content: @status.content }
     assert_redirected_to status_path(assigns(:status))
+  end
+
+  test "should update status when current user logged in" do
+    sign_in users(:rickson)
+    put :update, id: @status, status: { content: @status.content, user_id: users(:minigoh).id }
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:rickson).id
+  end
+
+  test "should not update status if nothing has changed" do
+    sign_in users(:rickson)
+    put :update, id: @status
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:rickson).id
   end
 
   test "should no destroy status when no logged in" do
@@ -90,4 +116,5 @@ class StatusesControllerTest < ActionController::TestCase
 
     assert_redirected_to statuses_path
   end
+
 end
