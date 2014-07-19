@@ -7,3 +7,7 @@ one:
 two:
   content: MyText
   user: rickson
+
+three:
+  content: "I am mao"
+  user: minigoh1
