@@ -5,7 +5,13 @@ rickson:
   profile_name: "ricksongoh"
 
 minigoh:
-  first_name: "Minigoh"
+  first_name: "Mini"
   last_name: "goh"
   email: "minigoh@gmail.com"
   profile_name: "minigoh1"
+
+garygoh:
+  first_name: "Gary"
+  last_name: "goh"
+  email: "garygoh@gmail.com"
+  profile_name: "garygoh"
